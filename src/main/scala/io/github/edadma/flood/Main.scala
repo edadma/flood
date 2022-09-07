@@ -1,4 +1,4 @@
-package io.github.edadma._sn_template
+package io.github.edadma.flood
 
 @main def run(): Unit =
   println("Scala Native is awesome!")
