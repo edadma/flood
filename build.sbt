@@ -42,6 +42,7 @@ homepage := Some(url("https://github.com/edadma/" + name.value))
 libraryDependencies ++= Seq(
   "io.github.spritzsn" %%% "libuv" % "0.0.25",
   "io.github.edadma" %%% "iup" % "0.1.1",
+  "io.github.spritzsn" %%% "async" % "0.0.13",
 )
 
 publishMavenStyle := true
