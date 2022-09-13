@@ -4,7 +4,7 @@ version := "0.0.1"
 
 versionScheme := Some("early-semver")
 
-scalaVersion := "3.1.3"
+scalaVersion := "3.2.0"
 
 enablePlugins(ScalaNativePlugin)
 
@@ -33,6 +33,8 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 resolvers += Resolver.githubPackages("edadma")
 
+resolvers += Resolver.githubPackages("spritzsn")
+
 licenses := Seq("ISC" -> url("https://opensource.org/licenses/ISC"))
 
 homepage := Some(url("https://github.com/edadma/" + name.value))
@@ -40,7 +42,7 @@ homepage := Some(url("https://github.com/edadma/" + name.value))
 //libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.13" % "test"
 
 libraryDependencies ++= Seq(
-  "io.github.spritzsn" %%% "libuv" % "0.0.25",
+  "io.github.spritzsn" %%% "libuv" % "0.0.26",
   "io.github.edadma" %%% "iup" % "0.1.1",
   "io.github.spritzsn" %%% "async" % "0.0.13",
 )
