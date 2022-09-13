@@ -1,4 +1,10 @@
 package io.github.edadma.flood
 
-@main def run(): Unit =
-  println("Scala Native is awesome!")
+import cps.*
+import cps.monads.FutureAsyncMonad
+
+import io.github.spritzsn.async._
+
+@main def run(): Unit = async {
+  println(await(fetch("localhost")).text())
+}
