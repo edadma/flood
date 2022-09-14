@@ -6,25 +6,21 @@ import io.github.spritzsn.async.*
 
 import java.net.URL
 import scala.concurrent.Future
+import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
-@main def run(): Unit = async {
+@main def run(users: Int, seconds: Double): Unit = async {
   var cont = true
-  val url = "localhost:3000"
   var count = 0
 
-  def request = fetch(url) andThen (_ => count += 1)
+  def request = fetch("127.0.0.1", 3000, "localhost", "/") andThen (_ => count += 1)
 
   def user = async {
     while cont do await(request).text()
   }
 
-  user
-  user
-  user
-  user
-  user
-  await(timer(1000))
+  for _ <- 1 to users do user
+  await(timer(seconds second))
   cont = false
-  println(count)
+  println(s"${(count / seconds).toInt} transactions per second")
 }
