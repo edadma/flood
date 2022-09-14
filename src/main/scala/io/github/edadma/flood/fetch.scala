@@ -44,6 +44,7 @@ def fetch(ip: String, port: Int, domain: String, path: String): Future[FetchResu
         stream.readStop
         if size != eof then
           promise.failure(new RuntimeException(s"error in read callback: ${errName(size)}: ${strError(size)}"))
+        stream.close()
       else if size > 0 then
         try
           for i <- 0 until size do parser send buf(i)
