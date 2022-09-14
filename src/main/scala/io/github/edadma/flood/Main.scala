@@ -9,5 +9,22 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 @main def run(): Unit = async {
-  println(await(fetch("localhost:3000")).text())
+  var cont = true
+  val url = "localhost:3000"
+  var count = 0
+
+  def request = fetch(url) andThen (_ => count += 1)
+
+  def user = async {
+    while cont do await(request).text()
+  }
+
+  user
+  user
+  user
+  user
+  user
+  await(timer(1000))
+  cont = false
+  println(count)
 }
