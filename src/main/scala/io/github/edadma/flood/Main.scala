@@ -16,11 +16,11 @@ import scala.util.{Failure, Success}
   def request = fetch("127.0.0.1", 3000, "localhost", "/") andThen (_ => count += 1)
 
   def user = async {
-    while cont do await(request).text()
+    while cont do await(request)
   }
 
   for _ <- 1 to users do user
   await(timer(seconds second))
   cont = false
-  println(s"${(count / seconds).toInt} transactions per second")
+  println(s"$count total; ${(count / seconds).toInt} transactions per second")
 }
