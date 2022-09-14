@@ -2,9 +2,12 @@ package io.github.edadma.flood
 
 import cps.*
 import cps.monads.FutureAsyncMonad
+import io.github.spritzsn.async.*
 
-import io.github.spritzsn.async._
+import java.net.URL
+import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 @main def run(): Unit = async {
-  println(await(fetch("localhost")).text())
+  println(await(fetch("localhost:3000")).text())
 }
