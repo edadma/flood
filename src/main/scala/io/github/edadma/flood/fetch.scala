@@ -37,6 +37,12 @@ def fetch(ip: String, port: Int, domain: String, path: String): Future[FetchResu
   val h = defaultLoop.tcp
 
   def connectCallback(status: Int): Unit =
+    if status < 0 then
+      val error = s"error in connect callback: ${errName(status)}: ${strError(status)}"
+
+      Console.err.println(error)
+      promise.failure(new RuntimeException(error))
+
     h.write(s"GET ${if path == null then "/" else path} HTTP/1.0\r\nHost: $domain\r\n\r\n".getBytes)
 
     def readCallback(stream: TCP, size: Int, buf: Buffer): Unit =
