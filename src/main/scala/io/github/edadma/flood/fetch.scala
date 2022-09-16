@@ -64,6 +64,8 @@ def fetch(ip: String, port: Int, domain: String, path: String): Future[FetchResu
                 parser.body to immutable.ArraySeq,
               ),
             )
+            stream.readStop
+            stream.close()
         catch case e: Exception => promise.failure(e)
     end readCallback
 
